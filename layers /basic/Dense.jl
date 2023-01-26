@@ -6,11 +6,8 @@ struct neural
     b
 end 
 
-function neural((in,out)::Pair;bias= true, init=Flux.rand32)
-    W=init(out,in)
-    b=Flux.create_bias(W,bias,out)
-    neural(W,b)
-end 
+neural(in::Integer, out::Integer) =
+  neural(randn(out, in)*0.1, randn(out)*0.1)
 
 (m::neural)(x)=m.W*x.+m.b
 
